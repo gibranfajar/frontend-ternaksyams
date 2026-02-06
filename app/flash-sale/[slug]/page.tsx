@@ -96,7 +96,7 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     if (!activeSize || !activeVariant) return;
 
-    const flavourInfo = productDetail.flavours?.find((f) =>
+    const flavourInfo = productDetail.flavours?.find((f: any) =>
       activeVariant.variant_name.toLowerCase().includes(f.name.toLowerCase()),
     );
 
