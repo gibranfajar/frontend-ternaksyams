@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  /* themes: false; */
+  themes: light --default;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
+
+p,
+a,
+ul,
+li,
+button {
+  font-family: var(--font-manrope), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --color-base-100: oklch(98% 0.001 106.423);
+  --color-base-200: oklch(97% 0.001 106.424);
+  --color-base-300: oklch(92% 0.003 48.717);
+  --color-base-content: oklch(21% 0.006 56.043);
+  --color-primary: #0c4c35;
+  --color-primary-content: oklch(97% 0.014 254.604);
+  --color-secondary: #00a67e;
+  --color-secondary-content: oklch(98% 0.003 247.858);
+  --color-accent: #e02954;
+  --color-accent-content: oklch(97% 0.013 236.62);
+  --color-neutral: #19996b;
+  --color-neutral-content: oklch(98% 0.001 106.423);
+  --color-neutral-variant: #1ba27a;
+  --color-neutral-variant-content: oklch(98% 0.001 106.423);
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: oklch(98% 0.019 200.873);
+  --color-success: oklch(72% 0.219 149.579);
+  --color-success-content: oklch(98% 0.018 155.826);
+  --color-warning: oklch(70% 0.213 47.604);
+  --color-warning-content: oklch(98% 0.016 73.684);
+  --color-error: oklch(58% 0.253 17.585);
+  --color-error-content: oklch(97% 0.013 17.38);
+  /* --radius-selector: 0.5rem; */
+  --radius-field: 0.5rem;
+  /* --radius-box: 0.25rem; */
+  /* --size-selector: 0.25rem; */
+  /* --size-field: 0.25rem; */
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+  --color-cream: #f6f6ee;
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  font-family: manrope, sans-serif;
+}
+
+/* Dalam berkas CSS kustom Anda (misalnya globals.css) */
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4),
+      0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4),
+      0 0 10px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes float-up-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); /* Naik 5px */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.glow-float-animation {
+  /* Terapkan kedua animasi */
+  animation: glow-pulse 3s infinite alternate,
+    float-up-down 2s infinite ease-in-out;
+}
