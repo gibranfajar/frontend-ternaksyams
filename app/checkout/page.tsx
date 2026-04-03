@@ -116,7 +116,7 @@ const Checkout = () => {
     { id: 1, name: "SICEPAT", slug: "sicepat" },
     { id: 2, name: "JNE", slug: "jne" },
     { id: 3, name: "JNT", slug: "jnt" },
-    { id: 4, name: "NINJA", slug: "ninja" },
+    // { id: 4, name: "NINJA", slug: "ninja" },
   ];
 
   const [data, setData] = useState({
