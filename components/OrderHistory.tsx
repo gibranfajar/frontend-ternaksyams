@@ -59,6 +59,14 @@ interface Voucher {
   laravel_through_key: number;
 }
 
+interface CancelOrder {
+  id: number;
+  order_id: number;
+  reason: string;
+  status: string;
+  status_payment: string;
+}
+
 interface Transaction {
   id: number;
   invoice: string;
@@ -75,6 +83,7 @@ interface Transaction {
   payment_method: string;
   payment_token?: string; // Tambahkan field ini sesuai data API
   voucher?: Voucher;
+  cancel_order?: CancelOrder;
 }
 
 // --- 2. Helper Functions ---
@@ -116,6 +125,8 @@ const getStatusBadgeClass = (status: string) => {
       return "bg-green-50 text-green-700 border border-green-200";
     case "processing": // Tambahkan case processing
       return "bg-blue-50 text-blue-700 border border-blue-200";
+    case "cancelled":
+      return "bg-red-50 text-red-700 border border-red-200";
     case "expired":
       return "bg-red-50 text-red-700 border border-red-200";
     default:
@@ -268,15 +279,32 @@ const TransactionDetailModal: React.FC<{
               Informasi Umum
             </h4>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between items-center">
-                <span className="shrink-0 font-medium">Status Pesanan</span>
-                <span
-                  className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadgeClass(
-                    transaction.status,
-                  )} uppercase`}
-                >
-                  {statusDisplay}
-                </span>
+              <div className="flex flex-col gap-2">
+                {/* STATUS (horizontal) */}
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm font-medium text-gray-600">
+                    Status Pesanan
+                  </span>
+                  <span
+                    className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusBadgeClass(
+                      transaction.status,
+                    )} uppercase`}
+                  >
+                    {statusDisplay}
+                  </span>
+                </div>
+
+                {/* REASON (di bawah) */}
+                {transaction.cancel_order && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-600">
+                      Alasan Pembatalan
+                    </span>
+                    <div className="text-sm font-semibold text-red-500">
+                      {transaction.cancel_order.reason}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="flex justify-between">
                 <span className="shrink-0">No. Invoice</span>
